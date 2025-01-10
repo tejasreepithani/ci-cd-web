@@ -1,0 +1,31 @@
+name: Upload Website
+
+on:
+
+  push:
+    brances:
+    -master
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    -uses: actions/checkout@master
+    -uses: jakejarvis/s3-sync-actiongmaster
+     with: 
+       args: --act public-read follow-symlinks-delete
+    env:
+      AWS_S3_BUCKET: $<< secrets.AWS S3 BUCKET ))
+
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS ACCESS_KEY_ID >>
+
+      AWS_SECRET_ACCESS_KEY: $(( secrets.AWS SECRET ACCESS KEY))
+
+      AWS_REGION: 'ap-south-1'
+
+      SOURCE_DIR: './'
+
+
+      
+      
